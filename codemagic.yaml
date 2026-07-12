@@ -1,0 +1,48 @@
+# Codemagic CI/CD for 韩语启蒙助手 iOS Build
+# Sign up at https://codemagic.io (free tier: 500 min/month)
+# Connect your GitHub repo → Codemagic auto-detects this file
+
+workflows:
+  ios-build:
+    name: iOS Build & TestFlight
+    instance_type: mac_mini_m2
+    max_build_duration: 30
+    environment:
+      flutter: stable
+      xcode: latest
+      ios_signing:
+        distribution_type: development
+        bundle_identifier: com.koreanbeginner.app
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+    scripts:
+      - name: Install dependencies
+        script: |
+          cd app
+          flutter pub get
+      - name: Run tests
+        script: |
+          cd app
+          flutter test
+      - name: Build iOS
+        script: |
+          cd app
+          flutter build ios --release --no-codesign
+      - name: Export IPA
+        script: |
+          cd app
+          flutter build ipa --export-method development
+    artifacts:
+      - app/build/ios/ipa/*.ipa
+    publishing:
+      email:
+        recipients:
+          - developer@korean-app.dev
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_API_KEY
+        key_id: $APP_STORE_KEY_ID
+        issuer_id: $APP_STORE_ISSUER_ID

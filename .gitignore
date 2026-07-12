@@ -1,0 +1,27 @@
+# Flutter
+app/.dart_tool/
+app/build/
+app/.packages
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.jks
+*.p8
