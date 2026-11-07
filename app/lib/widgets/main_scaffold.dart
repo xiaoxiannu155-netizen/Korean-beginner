@@ -20,12 +20,12 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: [
-          const HomeScreen(),
-          const LearningMapScreen(),
-          const TranslateScreen(),
-          const ProfileScreen(),
-        ][_currentIndex].clamp(0, 3) as Widget, // fallback
+        children: const [
+          HomeScreen(),
+          LearningMapScreen(),
+          TranslateScreen(),
+          ProfileScreen(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
