@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../models/daily_task.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/daily_task_provider.dart';
 import 'widgets/greeting_header.dart';
