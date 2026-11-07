@@ -142,7 +142,7 @@ class _ScenarioChatScreenState extends ConsumerState<ScenarioChatScreen> {
             Text(_scenario?['context'] ?? '', style: const TextStyle(fontSize: 11)),
             if (_scenario?['tips'] != null) ...[
               const SizedBox(height: 4),
-              Wrap(spacing: 4, children: (_scenario!['tips'] as List).map((t) => Container(padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2), decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)), child: Text(t.toString(), style: const TextStyle(fontSize: 10))))).toList()),
+              Wrap(spacing: 4, children: (_scenario!['tips'] as List).map((t) => Container(padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2), decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)), child: Text(t.toString(), style: const TextStyle(fontSize: 10)))).toList()),
             ],
           ]),
         ),

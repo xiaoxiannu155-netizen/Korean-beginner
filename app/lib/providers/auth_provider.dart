@@ -3,8 +3,6 @@ import '../models/user.dart';
 import '../services/api_client.dart';
 import '../services/auth_service.dart';
 
-final apiClientProvider = Provider<ApiClient>((ref) => ApiClient());
-
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   return AuthNotifier(ref.watch(apiClientProvider));
 });

@@ -26,7 +26,7 @@ class StreakCalendar extends StatelessWidget {
                 color: studied ? AppTheme.success : const Color(0xFFF0F0F0),
                 shape: BoxShape.circle,
               ),
-              child: Center(child: studied ? const Text('🔥', fontSize: 16) : const Text('·', style: TextStyle(color: AppTheme.textSecondary))),
+              child: Center(child: studied ? const Text('🔥', style: TextStyle(fontSize: 16)) : const Text('·', style: TextStyle(color: AppTheme.textSecondary))),
             ),
           ]);
         }).toList()),

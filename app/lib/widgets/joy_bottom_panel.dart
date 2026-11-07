@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/joy_provider.dart';
 import '../config/theme.dart';
+import 'joy_sprite.dart';
 
 enum JoyContext { word, letter, grammar, batchim, unknown }
 

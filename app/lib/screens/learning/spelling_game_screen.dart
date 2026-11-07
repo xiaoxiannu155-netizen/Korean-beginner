@@ -53,7 +53,7 @@ class _SpellingGameScreenState extends ConsumerState<SpellingGameScreen> {
       _lastCorrect = correct;
       _feedback = correct ? '✅ 正确! +${resp.data['xp_earned']}XP' : '❌ 再试一次!';
       if (correct) {
-        _score += resp.data['xp_earned'];
+        _score += (resp.data['xp_earned'] as num).toInt();
         _streak++;
         if (_streak >= 5) { _streak = 0; _level = (_level % 4) + 1; }
         Future.delayed(const Duration(milliseconds: 800), _loadQuestion);
