@@ -15,6 +15,57 @@
 
   <title>韩语启蒙助手</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    /* 加载动画 - 在 Flutter 引擎加载完成前显示 */
+    #loading {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #6C5CE7, #A29BFE);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s;
+    }
+    #loading.hidden { opacity: 0; pointer-events: none; }
+    #loading .logo {
+      width: 80px; height: 80px;
+      background: linear-gradient(180deg, #FFEAA7, #FDCB6E);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px;
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    #loading .text {
+      color: #fff;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: -apple-system, sans-serif;
+    }
+    #loading .sub {
+      color: rgba(255,255,255,0.75);
+      margin-top: 6px;
+      font-size: 13px;
+      font-family: -apple-system, sans-serif;
+    }
+    #loading .spinner {
+      margin-top: 24px;
+      width: 28px; height: 28px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -24,17 +75,31 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <div id="loading">
+    <div class="logo">🧚</div>
+    <div class="text">韩语启蒙助手</div>
+    <div class="sub">正在加载学习内容...</div>
+    <div class="spinner"></div>
+  </div>
+
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
       _flutter.loader.load({
         serviceWorkerSettings: {
           serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          return engineInitializer.initializeEngine().then(function(appRunner) {
+            return appRunner.runApp();
+          }).then(function() {
+            // App 启动成功后隐藏加载画面
+            var loading = document.getElementById('loading');
+            if (loading) {
+              setTimeout(function() { loading.classList.add('hidden'); }, 300);
+            }
+          });
         }
-      }).then(function(engineInitializer) {
-        return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
-        return appRunner.runApp();
       });
     });
   </script>
